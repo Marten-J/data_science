@@ -26,7 +26,7 @@ d2<- esoph %>%  group_by(tobgp) %>%
 p2 <- ggplot(d2, aes(x=tobgp, y=percentage,fill=tobgp)) +
   geom_bar(stat="identity", position = "dodge") +
   scale_fill_brewer(palette ="Set1")+
-  labs(x= 'Age Tobacco Consumption', y= 'Percentage Of Cancer Cases')+
+  labs(x= 'Tobacco Consumption', y= 'Percentage Of Cancer Cases')+
   guides(fill=guide_legend(title="Tobacco Consumption"))
 
 print(p2)
