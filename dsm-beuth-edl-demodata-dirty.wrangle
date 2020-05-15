@@ -1,0 +1,10 @@
+macro macroId: 392 parameters: ['full_name',full_name], ['id',id], ['last_name',last_name], ['first_name',first_name], ['email',email], ['gender',gender], ['age',age]
+filter type: missing missing: email action: Delete
+derive type: multiple value: RANK() group: email order: $sourcerownumber as: 'CheckDuplcatedEmail'
+filter type: greaterThan col: CheckDuplcatedEmail greaterThan: 1 action: Delete
+set col: gender value: IFMISSING($col, 'Male')
+drop col: CheckDuplcatedEmail action: Drop
+set col: id value: IFMISSING($col, MAX(id) + 1)
+sort order: id
+set col: age value: ABS(age)
+set col: age value: IFMISSING($col, ROUND(AVERAGE(age), 0))
